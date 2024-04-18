@@ -9,7 +9,7 @@ from sqlalchemy.orm import relationship
 
 class State(BaseModel, Base):
     """ State class """
-    if models.storage_t == "db":
+    if models.storage_type == "db":
         __tablename__ = "states"
         name = Column(String(128), nullable=False)
         cities = relationship("City", cascade="all,delete",
@@ -21,7 +21,7 @@ class State(BaseModel, Base):
         """initializes state"""
         super().__init__(*args, **kwargs)
 
-    if models.storage_t != "db":
+    if models.storage_type != "db":
         @property
         def cities(self):
             """getter for list of city instances related to the state"""
