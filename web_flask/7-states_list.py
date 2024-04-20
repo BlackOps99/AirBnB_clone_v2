@@ -6,6 +6,7 @@ start the web application using Flask
 from flask import Flask, render_template
 from models import storage
 from models.state import State
+
 app = Flask(__name__)
 
 
@@ -18,7 +19,7 @@ def states_list():
 
 
 @app.teardown_appcontext
-def teardown_db(exception):
+def teardown_db(exception=None):
     """closes the storage on teardown"""
     storage.close()
 
